@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>New Expense</ion-title>
+    <ion-buttons end>
+      <button ion-button outline  (click)="dismiss(false)">Cancel</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content >
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="operDate" [min]="operDateMin" [max]="operDateMax"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Amount</ion-label>
+      <ion-input type="number" [(ngModel)]="amount" placeholder="0.00"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Category</ion-label>
+      <ion-input type="text" *ngIf="categorySelected" [(ngModel)]="categorySelected.name"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+
+  <div class="categoriesList">
+    <ion-item>
+      <ion-label stacked>Categories</ion-label>     
+      <ion-icon name="add" (click)="newCategory()" item-end></ion-icon>
+      <ion-icon name="remove" (click)="removeCategories =!removeCategories" item-end></ion-icon>
+    </ion-item>
+    <button *ngFor="let cat of catList" float ion-button outline round icon-right (click)="actionCategory(cat)">
+        {{ cat?.name }}
+        <ion-icon *ngIf="removeCategories" name="close"></ion-icon>
+    </button>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button full round (click)="confirm()">Confirm</button>
+</ion-footer>

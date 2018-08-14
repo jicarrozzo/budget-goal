@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Analytics</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-item center>
+      <ion-datetime displayFormat="MMMM YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="searchDate" (ionChange)="loadExpenses()"></ion-datetime>
+
+  </ion-item>
+ 
+  <ion-grid>
+      <ion-row *ngFor="let cat of categoriesList" class="expense">
+        <div col col-5>{{ cat?.category.name }}</div>
+        <div col col-4 text-right>{{ cat?.usage }}</div>
+        <div col col-3 text-right>{{ cat?.amount | currency }}</div>
+      </ion-row>
+    </ion-grid>
+  
+
+</ion-content>

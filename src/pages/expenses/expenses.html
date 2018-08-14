@@ -1,0 +1,41 @@
+
+<ion-header>
+
+  <ion-navbar >
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Expenses</ion-title>
+    <ion-buttons end [hidden]="true">
+      <button ion-button icon-only (click)="newExpense()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let expense of expensesListFiltered" class="expense">
+      <div col col-1 (click)="showOptions(expense)"><ion-icon name="more" ></ion-icon></div>
+      <div col col-3>{{ expense?.date | date:'MMM, dd' }}</div>
+      <div col col-5>{{ expense?.category.name }}</div>
+      <div col col-3 text-right>{{ expense?.amount | currency }}</div>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="newExpense()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
+<ion-footer>
+  <ion-grid bottom class="total">
+    <ion-row>
+      <div col col-6>Total</div>
+      <div col col-5 text-right>{{ total | currency }}</div>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

@@ -1,0 +1,55 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>New Goal</ion-title>
+    <ion-buttons end>
+      <button ion-button outline  (click)="dismiss(false)">Cancel</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+      <ion-label stacked>Type</ion-label>
+      <ion-select  [(ngModel)]="goalType" interface="popover" placeholder="Monthly, weekly, daily" (ionChange)="createGoal()">
+        <ion-option value="0">Monthly Goal by Category</ion-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-list *ngIf="goalType && newGoal">
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="newGoal.title" placeholder="My new goal"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Code</ion-label>
+      <ion-input type="text" [(ngModel)]="newGoal.code"  placeholder="GoalMarch18"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Month</ion-label>
+      <ion-datetime displayFormat="MMMM YYYY" [(ngModel)]="newGoal.month" placeholder="What month?" (ionChange)="monthUpdate()" ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Category</ion-label>
+      <ion-select  [(ngModel)]="newGoal.category" interface="popover" placeholder="What category?">
+        <ion-option *ngFor="let cat of catList" [value]="cat">{{ cat.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label stacked>Amount</ion-label>
+      <ion-input type="number" [(ngModel)]="newGoal.moneylimit" placeholder="0.00"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <button ion-button full round (click)="confirm()">Confirm</button>
+</ion-footer>

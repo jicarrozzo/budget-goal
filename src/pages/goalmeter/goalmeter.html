@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Goalmeter</ion-title>
+    <ion-buttons end [hidden]="true">
+      <button ion-button icon-only (click)="newGoal()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngFor="let goal of goalsListFiltered" class="goal">
+      <ion-row >
+        <ion-item class="goalTitle" col col-12>
+          {{goal?.title}}
+          <ion-icon name="more" item-right  (click)="showOptions(goal)"></ion-icon>
+        </ion-item>
+        
+        <ion-item col col-3>
+          <ion-icon name="calendar" *ngIf="goal.type==0"></ion-icon>
+        </ion-item>
+        <ion-item col col-9>{{ goal?.month }}</ion-item>
+        <ion-item col col-3>
+          <ion-icon name="funnel"></ion-icon>
+        </ion-item>
+        <ion-item col col-9> {{ goal?.category.name }}</ion-item>
+        <ion-item col col-6 text-right>{{ goal?.usage | currency }}</ion-item>
+        <ion-item col col-6 text-right>{{ goal?.moneylimit | currency }}</ion-item>
+        <ion-item col col-12>
+          <progress-bar [progress]="goal?.percentage"></progress-bar>
+        </ion-item>
+      </ion-row>
+  </ion-card>
+
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="newGoal()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>

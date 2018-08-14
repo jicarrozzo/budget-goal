@@ -1,0 +1,42 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Crear una cuenta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="singupForm" (submit)="signupUser()" novalidate>
+    <ion-item padding>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input formControlName="name" type="text" [class.invalid]="!singupForm.controls.name.valid && singupForm.controls.name.dirty" ></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!singupForm.controls.name.valid" no-lines>
+      <p>Por favor, ingrese un nombre valido </p>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email" [class.invalid]="!singupForm.controls.email.valid && singupForm.controls.email.dirty" ></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!singupForm.controls.email.valid" no-lines>
+      <p>Por favor, ingrese su direccion de correo electronico </p>
+    </ion-item>
+
+
+    <ion-item padding>
+      <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password" [class.invalid]="!singupForm.controls.password.valid && singupForm.controls.password.dirty" ></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!singupForm.controls.password.valid" no-lines>
+      <p>Por favor, ingrese una contraseña valida </p>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!singupForm.valid" > Registrarse</button>
+  </form>
+
+</ion-content>

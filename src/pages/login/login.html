@@ -1,0 +1,38 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Log In</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+    <ion-item padding>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" ></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid" no-lines>
+      <p>Por favor, ingrese su direccion de correo electronico </p>
+    </ion-item>
+
+
+    <ion-item padding>
+      <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty" ></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid" no-lines>
+      <p>Por favor, ingrese una contraseña valida </p>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!loginForm.valid" >Ingresar</button>
+  </form>
+
+  <button ion-button block clear (click)="gotoSignUp()" >o registrar tu correo</button>
+
+  <button ion-button block clear (click)="resetPassword()" >Olvidaste tu contraseña</button>
+</ion-content>

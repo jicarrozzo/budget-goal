@@ -1,0 +1,47 @@
+<ion-menu persistent="true" side="left" [content]="content">
+  <ion-header>
+    <ion-item>
+      <img src="assets/imgs/logo.png" class="productLogo" />
+      <span class="bigTitle">My Badget Goal</span>
+    </ion-item>
+
+    <ion-item>
+        <ion-avatar  col-12 item-left>
+          <ion-grid >
+            <ion-row>
+              <ion-col col-3 text-center class="userImg">
+                <ion-icon name="contact"></ion-icon>
+              </ion-col>
+  
+              <ion-col col-8 text-left>
+                <!-- <span class="userName">{{ userName }}</span> <br> -->
+                <span class="userEmail">{{ userEmail }}</span>
+              </ion-col>
+              <ion-col col-1 text-right>
+                  <ion-icon name="log-out" (click)="logOut()"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-avatar>
+      </ion-item>
+  </ion-header>
+
+  <ion-content>
+  <ion-list>
+    <button ion-item menuClose (click)="gotoPage('SettingsPage')">
+        <ion-icon name="settings"></ion-icon>
+        <span class="menuText">Settings</span>
+    </button>
+    <button ion-item menuClose (click)="shareMe()">
+        <ion-icon name="share"></ion-icon>
+        <span class="menuText">Shared me!</span>
+    </button>
+  </ion-list>
+
+  </ion-content>
+  
+
+  </ion-menu>
+  
+
+<ion-nav [root]="rootPage" #content></ion-nav>
